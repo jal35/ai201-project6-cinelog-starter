@@ -1,7 +1,7 @@
 # PR Response Doc — CineLog Watchlist Feature
 
 ## AI Usage
-* Used a structured AI prompt to help generate the test structure for the watchlist service, specifically modeling it after existing collection tests.
+* Used t to help generate the test structure for the watchlist service, specifically modeling it after existing collection tests.
 
 ## Comment 1 — Rename
 **What I did:** Renamed `save_to_watchlist()` to `add_to_watchlist()` in `services/watchlist_service.py` to match CineLog's verb-noun naming conventions. Updated all call sites in `routes/watchlist/watchlist.py`.
@@ -30,3 +30,17 @@
 * Refactored the `WatchlistEntry` model in `models.py` to support the new UUID string format (`db.String(36)`) implemented on `main`.
 * Updated database relationships and validated all tests.
 **How I verified:** Ran `pytest` to confirm that both the collection tests and the new watchlist tests pass with 100% success under the new UUID system.
+
+## PR Description
+### Feature Overview
+Implemented the watchlist feature for CineLog, allowing users to save films they want to watch later. This includes database model setup, a dedicated service layer, and API endpoints.
+
+### Design Decisions
+1. Default Visibility (public=True): Set new watchlist entries to public by default to align with CineLog's community-driven, social tracking environment.
+2. Sort Order (date_added Newest First): Defaulted to newest-first sorting so users immediately see their freshest interests, while proposing future client-side toggles (e.g., alphabetical) to handle shared/co-watching clutter.
+
+### Testing Instructions
+All features have been thoroughly tested. To run the test suite locally:
+1. Ensure your virtual environment is active: .\.venv\Scripts\Activate.ps1
+2. Run the tests: pytest
+*Verify that all 5 tests (including the new duplicate prevention and non-existent film test) pass successfully.*
