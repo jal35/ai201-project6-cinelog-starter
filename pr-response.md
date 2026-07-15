@@ -23,3 +23,10 @@
 ## Comment 5 — Sort order
 **My position:** Sort by `date_added` (newest first) by default, while proposing future client-side sorting toggles.
 **Reasoning:** Sorting by date added highlights a user's freshest interests. However, because watchlist additions can sometimes be influenced by co-watching or temporary deviations, relying solely on chronological sorting isn't perfect, so adding an alphabetical toggle in the UI is highly recommended.
+
+## Comment 6 — Git Rebase and UUID Migration
+**What I did:** Successfully rebased the `feature/watchlist` branch onto the latest `main` branch. 
+* Resolved a merge conflict in `.gitignore`.
+* Refactored the `WatchlistEntry` model in `models.py` to support the new UUID string format (`db.String(36)`) implemented on `main`.
+* Updated database relationships and validated all tests.
+**How I verified:** Ran `pytest` to confirm that both the collection tests and the new watchlist tests pass with 100% success under the new UUID system.
